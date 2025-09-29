@@ -8,6 +8,7 @@ import {
   InfoCircleOutlined
 } from '@ant-design/icons';
 import { LookData, ProductItem } from '@/types';
+import Image from 'next/image';
 import ProductDetailModal from './ProductDetailModal';
 
 interface LookDetailModalProps {
@@ -118,12 +119,12 @@ export default function LookDetailModal({
                   styles={{ body: { display: 'flex', flexDirection: 'column', flex: 1, height: '100%', minHeight: 0, padding: 12 } }}
                   cover={
                     <div style={{ height: '200px', overflow: 'hidden', position: 'relative', border: '0.1px solid #e9e3dcff', borderRadius: '8px' }}>
-                      <img
+                      <Image
                         src={item.photo_url}
                         alt={item.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         style={{
-                          width: '100%',
-                          height: '100%',
                           objectFit: 'cover'
                         }}
                         onError={(e) => {
@@ -202,10 +203,11 @@ export default function LookDetailModal({
                         alignItems: 'center',
                         gap: '4px'
                       }}>
-                        <img 
+                        <Image 
                           src={item.icon} 
                           alt={item.source}
-                          style={{ width: '12px', height: '12px' }}
+                          width={12}
+                          height={12}
                           onError={(e) => {
                             e.currentTarget.style.display = 'none';
                           }}

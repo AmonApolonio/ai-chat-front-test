@@ -9,8 +9,6 @@ interface InitialScreenProps {
 }
 
 const InitialScreen: React.FC<InitialScreenProps> = ({ onOptionSelect }) => {
-  const options = ['Casual', 'Formal', 'Esporte', 'Festa', 'Outros'];
-
   return (
     <div style={{
       display: 'flex',

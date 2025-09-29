@@ -1,6 +1,7 @@
 import { Button, Spin } from 'antd';
 import { CloseOutlined, LoadingOutlined } from '@ant-design/icons';
 import { UploadedImage } from '@/types';
+import Image from 'next/image';
 
 interface ImagePreviewProps {
   images: UploadedImage[];
@@ -31,12 +32,11 @@ export default function ImagePreview({ images, onRemoveImage }: ImagePreviewProp
             backgroundColor: '#fafafa'
           }}
         >
-          <img
+          <Image
             src={image.preview}
             alt="Preview"
+            fill
             style={{
-              width: '100%',
-              height: '100%',
               objectFit: 'cover'
             }}
           />

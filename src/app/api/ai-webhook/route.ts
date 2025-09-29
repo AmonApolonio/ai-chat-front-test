@@ -83,7 +83,7 @@ export async function POST(request: NextRequest) {
     // We'll use a simple approach with a global store for this demo
     // In production, you'd want to use Redis, database, or WebSocket
     
-    const responseData: any = {
+    const responseData: Record<string, unknown> = {
       clienteId: data.cliente_id,
       chatId: data.chat_id
     };

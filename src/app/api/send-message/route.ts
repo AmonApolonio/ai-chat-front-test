@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
     // Create Basic Auth header
     const credentials = Buffer.from(`${username}:${password}`).toString('base64');
 
-    const payload: any = {
+    const payload: Record<string, unknown> = {
       "cliente_nome": clienteName,
       "cliente_id": parseInt(clienteId),
       "chat_id": parseInt(chatId),

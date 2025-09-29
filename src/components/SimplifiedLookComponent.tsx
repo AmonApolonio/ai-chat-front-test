@@ -1,4 +1,5 @@
 import { LookData } from '@/types';
+import Image from 'next/image';
 
 interface SimplifiedLookComponentProps {
   allLooks: LookData[];
@@ -74,15 +75,16 @@ export default function SimplifiedLookComponent({
                         aspectRatio: '1',
                         borderRadius: '6px',
                         overflow: 'hidden',
-                        backgroundColor: '#fff'
+                        backgroundColor: '#fff',
+                        position: 'relative'
                       }}
                     >
-                      <img
+                      <Image
                         src={item.photo_url}
                         alt={item.title}
+                        fill
+                        sizes="100px"
                         style={{
-                          width: '100%',
-                          height: '100%',
                           objectFit: 'cover'
                         }}
                         onError={(e) => {

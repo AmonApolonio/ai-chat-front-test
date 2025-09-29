@@ -1,10 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-interface UploadRequest {
-  type: string;
-  fileName: string;
-}
-
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();

@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { Modal, Row, Col, Card, Button, Rate, Tag, Image, Carousel } from "antd";
+import { Modal, Row, Col, Card, Button, Rate, Tag, Image as AntImage, Carousel } from "antd";
 import { 
   ShoppingOutlined,
   LinkOutlined,
@@ -8,6 +8,7 @@ import {
   ClockCircleOutlined,
   LoadingOutlined
 } from '@ant-design/icons';
+import Image from 'next/image';
 
 interface Store {
   name: string;
@@ -123,7 +124,7 @@ export default function ProductDetailModal({
     if (isVisible && productLink) {
       fetchProductDetails(productLink);
     }
-  }, [isVisible, productLink]);
+  }, [isVisible, productLink, fetchProductDetails]);
 
   const handleClose = () => {
     setProductData(null);
@@ -190,7 +191,7 @@ export default function ProductDetailModal({
                   <Carousel autoplay>
                     {productData.product_results.thumbnails.map((thumbnail, index) => (
                       <div key={index}>
-                        <Image
+                        <AntImage
                           src={thumbnail}
                           alt={`${productData.product_results.title} - Imagem ${index + 1}`}
                           style={{
@@ -254,12 +255,12 @@ export default function ProductDetailModal({
                       >
                         <Row align="middle" gutter={[12, 8]}>
                           <Col flex="none">
-                            <img 
+                            <Image 
                               src={store.logo}
                               alt={store.name}
+                              width={32}
+                              height={32}
                               style={{ 
-                                width: '32px', 
-                                height: '32px',
                                 borderRadius: '4px',
                                 objectFit: 'cover'
                               }}

@@ -28,7 +28,7 @@ export default function MessageList({
       flex: 1, 
       overflow: 'auto', 
       padding: '12px',
-      maxHeight: 'calc(95vh - 250px)'
+      minHeight: 0
     }}>
       <List
         itemLayout="vertical"
@@ -105,15 +105,16 @@ export default function MessageList({
                           height: '100px',
                           borderRadius: '8px',
                           overflow: 'hidden',
-                          border: '1px solid #d9d9d9'
+                          border: '1px solid #d9d9d9',
+                          position: 'relative'
                         }}
                       >
-                        <img
+                        <Image
                           src={imageUrl}
                           alt={`Imagem ${index + 1}`}
+                          fill
+                          sizes="100px"
                           style={{
-                            width: '100%',
-                            height: '100%',
                             objectFit: 'cover',
                             cursor: 'pointer'
                           }}

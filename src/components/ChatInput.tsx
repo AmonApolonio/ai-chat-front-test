@@ -1,4 +1,4 @@
-import { Button, Input, Typography, message } from "antd";
+import { Button, Input, message } from "antd";
 import { ArrowUpOutlined } from '@ant-design/icons';
 import { QuickResponse, UploadedImage } from '@/types';
 import PhotoUpload from './PhotoUpload';
@@ -36,8 +36,6 @@ export default function ChatInput({
   onRemoveImage
 }: ChatInputProps) {
   const hasValidImages = uploadedImages.some(img => img.url && !img.error);
-  const canSend = (inputValue.trim() && (!hasValidImages || inputValue.trim())) || 
-                  (!inputValue.trim() && !hasValidImages);
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -126,8 +124,11 @@ export default function ChatInput({
   return (
     <div 
       style={{ 
-        padding: '16px',
-        background: '#ffffff'
+        padding: '12px 16px',
+        background: '#ffffff',
+        flexShrink: 0,
+        maxHeight: '40vh',
+        overflow: 'auto'
       }}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
@@ -138,7 +139,9 @@ export default function ChatInput({
           marginBottom: '12px',
           display: 'flex',
           flexWrap: 'wrap',
-          gap: '8px'
+          gap: '8px',
+          maxHeight: '120px',
+          overflow: 'auto'
         }}>
           {quickResponses.map((response) => (
             <Button
@@ -150,7 +153,8 @@ export default function ChatInput({
               style={{
                 borderRadius: '16px',
                 border: '1px solid #d9d9d9',
-                background: '#fafafa'
+                background: '#fafafa',
+                whiteSpace: 'nowrap'
               }}
             >
               {response.text}
@@ -181,7 +185,10 @@ export default function ChatInput({
           padding: '8px 16px',
           background: '#f8f9fa',
           borderRadius: '24px',
-          border: '1px solid #e1e5e9'
+          border: '1px solid #e1e5e9',
+          minHeight: '40px',
+          display: 'flex',
+          alignItems: 'center'
         }}>
           <TextArea
             value={inputValue}
@@ -196,14 +203,15 @@ export default function ChatInput({
                     ? "Adicione uma mensagem para suas imagens..."
                     : "Digite sua mensagem aqui..."
             }
-            autoSize={{ minRows: 1, maxRows: 4 }}
+            autoSize={{ minRows: 1, maxRows: 3 }}
             disabled={isWaitingForAI || isGeneratingLooks}
             style={{ 
               resize: 'none',
               border: 'none',
               background: 'transparent',
               boxShadow: 'none',
-              padding: '4px 0'
+              padding: '4px 0',
+              width: '100%'
             }}
             variant="borderless"
           />

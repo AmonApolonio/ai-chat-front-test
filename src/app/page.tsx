@@ -173,7 +173,7 @@ export default function Home() {
   // Function to send message to API
   const sendMessageToAPI = async (message: string, imageUrls?: string[]) => {
     try {
-      const payload: any = {
+      const payload: Record<string, unknown> = {
         message,
         chatId: currentChatId
       };
@@ -355,12 +355,15 @@ export default function Home() {
     }}>
       <Layout style={{ 
         height: '95vh', 
+        maxHeight: '95vh',
         maxWidth: '700px', 
         width: '100%',
         background: '#ffffff',
         borderRadius: '12px',
         boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column'
       }}>
         <ChatHeader 
           messages={messages}
@@ -372,21 +375,24 @@ export default function Home() {
           background: '#fafafa',
           overflow: 'hidden',
           display: 'flex',
-          flexDirection: 'column'
+          flexDirection: 'column',
+          minHeight: 0
         }}>
           <Card 
             style={{ 
               flex: 1, 
               display: 'flex', 
               flexDirection: 'column',
-              padding: 0
+              padding: 0,
+              minHeight: 0
             }}
             styles={{ 
               body: { 
                 padding: 0, 
                 flex: 1, 
                 display: 'flex', 
-                flexDirection: 'column' 
+                flexDirection: 'column',
+                minHeight: 0
               }
             }}
           >
@@ -394,16 +400,23 @@ export default function Home() {
               <InitialScreen onOptionSelect={handleInitialOptionSelect} />
             ) : (
               <>
-                <MessageList
-                  messages={messages}
-                  remainingLooks={remainingLooks}
-                  isTyping={isTyping}
-                  isGeneratingLooks={isGeneratingLooks}
-                  messagesEndRef={messagesEndRef}
-                  onLookClick={handleLookClick}
-                />
+                <div style={{ 
+                  flex: 1, 
+                  display: 'flex', 
+                  flexDirection: 'column',
+                  minHeight: 0
+                }}>
+                  <MessageList
+                    messages={messages}
+                    remainingLooks={remainingLooks}
+                    isTyping={isTyping}
+                    isGeneratingLooks={isGeneratingLooks}
+                    messagesEndRef={messagesEndRef}
+                    onLookClick={handleLookClick}
+                  />
+                </div>
                 
-                <Divider style={{ margin: 0 }} />
+                <Divider style={{ margin: 0, flexShrink: 0 }} />
                 
                 <ChatInput
                   inputValue={inputValue}
