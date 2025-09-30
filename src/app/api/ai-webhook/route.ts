@@ -18,12 +18,12 @@ interface LookDescription {
 }
 
 interface WebhookRequest {
-  cliente_id: number | string;
-  chat_id: number | string;
+  clienteId: number | string;
+  chatId: number | string;
   question?: string;
   answers?: string[];
   remaining?: number;
-  descricao_looks?: LookDescription;
+  descricaoLooks?: LookDescription;
   items1?: ProductItem[];
   items2?: ProductItem[];
   items3?: ProductItem[];
@@ -35,7 +35,7 @@ interface AIResponse {
   question?: string;
   answers?: string[];
   remaining?: number;
-  descricao_looks?: LookDescription;
+  descricaoLooks?: LookDescription;
   items1?: ProductItem[];
   items2?: ProductItem[];
   items3?: ProductItem[];
@@ -56,15 +56,15 @@ export async function POST(request: NextRequest) {
     console.log('Webhook received:', data);
 
     // Validate required fields
-    if (!data.cliente_id || !data.chat_id) {
+    if (!data.clienteId || !data.chatId) {
       return NextResponse.json(
-        { error: 'Campos obrigatórios ausentes: cliente_id ou chat_id' },
+        { error: 'Campos obrigatórios ausentes: clienteId ou chatId' },
         { status: 400 }
       );
     }
 
     // Check if it's a regular Q&A response or a Look response
-    const isLookResponse = data.descricao_looks || data.remaining !== undefined;
+    const isLookResponse = data.descricaoLooks || data.remaining !== undefined;
     
     if (!isLookResponse && !data.question) {
       return NextResponse.json(
@@ -84,14 +84,14 @@ export async function POST(request: NextRequest) {
     // In production, you'd want to use Redis, database, or WebSocket
     
     const responseData: Record<string, unknown> = {
-      clienteId: data.cliente_id,
-      chatId: data.chat_id
+      clienteId: data.clienteId,
+      chatId: data.chatId
     };
 
     // Add fields based on response type
     if (isLookResponse) {
       responseData.remaining = data.remaining;
-      responseData.descricao_looks = data.descricao_looks;
+      responseData.descricaoLooks = data.descricaoLooks;
       responseData.items1 = data.items1;
       responseData.items2 = data.items2;
       responseData.items3 = data.items3;
@@ -118,7 +118,7 @@ export async function POST(request: NextRequest) {
 
     if (isLookResponse) {
       storedResponse.remaining = data.remaining;
-      storedResponse.descricao_looks = data.descricao_looks;
+      storedResponse.descricaoLooks = data.descricaoLooks;
       storedResponse.items1 = data.items1;
       storedResponse.items2 = data.items2;
       storedResponse.items3 = data.items3;
@@ -129,7 +129,7 @@ export async function POST(request: NextRequest) {
       storedResponse.answers = data.answers || [];
     }
 
-    global.aiResponses.set(data.chat_id.toString(), storedResponse);
+    global.aiResponses.set(data.chatId.toString(), storedResponse);
 
     return NextResponse.json(response);
 

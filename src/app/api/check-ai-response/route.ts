@@ -21,7 +21,7 @@ interface AIResponse {
   question?: string;
   answers?: string[];
   remaining?: number;
-  descricao_looks?: LookDescription;
+  descricaoLooks?: LookDescription;
   items1?: ProductItem[];
   items2?: ProductItem[];
   items3?: ProductItem[];

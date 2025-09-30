@@ -45,13 +45,13 @@ export default function Home() {
   // Function to handle AI response processing
   const processAIResponse = useCallback((aiResponse: LookData & { question?: string; answers?: string[] }) => {
     // Check if it's a Look response or regular Q&A
-    const isLookResponse = aiResponse.descricao_looks || aiResponse.remaining !== undefined;
+    const isLookResponse = aiResponse.descricaoLooks || aiResponse.remaining !== undefined;
 
     if (isLookResponse) {
       // Handle Look response
       const newLook = {
         remaining: aiResponse.remaining,
-        descricao_looks: aiResponse.descricao_looks,
+        descricaoLooks: aiResponse.descricaoLooks,
         items1: aiResponse.items1,
         items2: aiResponse.items2,
         items3: aiResponse.items3,

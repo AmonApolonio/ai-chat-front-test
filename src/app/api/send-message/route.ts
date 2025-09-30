@@ -35,15 +35,15 @@ export async function POST(request: NextRequest) {
     const credentials = Buffer.from(`${username}:${password}`).toString('base64');
 
     const payload: Record<string, unknown> = {
-      "cliente_nome": clienteName,
-      "cliente_id": parseInt(clienteId),
-      "chat_id": parseInt(chatId),
+      "clienteNome": clienteName,
+      "clienteId": parseInt(clienteId),
+      "chatId": parseInt(chatId),
       "mensagem": message
     };
 
-    // Add files-url if provided
+    // Add filesUrl if provided
     if (filesUrl && filesUrl.length > 0) {
-      payload["files-url"] = filesUrl;
+      payload["filesUrl"] = filesUrl;
     }
 
     const response = await fetch(n8nUrl, {

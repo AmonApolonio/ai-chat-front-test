@@ -94,9 +94,9 @@ export default function LookDetailModal({
       <Modal
         title={
           <div
-            style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: selectedLookData.descricao_looks ? 'pointer' : 'default' }}
+            style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: selectedLookData.descricaoLooks ? 'pointer' : 'default' }}
             onClick={() => {
-              if (selectedLookData.descricao_looks) setDescModalOpen(true);
+              if (selectedLookData.descricaoLooks) setDescModalOpen(true);
             }}
           >
             <ShoppingOutlined style={{ color: '#947B62' }} />
@@ -260,9 +260,9 @@ export default function LookDetailModal({
         width={500}
         style={{ top: 40 }}
       >
-        {selectedLookData.descricao_looks && (
+        {selectedLookData.descricaoLooks && (
           <Row gutter={[16, 8]}>
-            {Object.entries(selectedLookData.descricao_looks).map(([key, value]) => (
+            {Object.entries(selectedLookData.descricaoLooks).map(([key, value]) => (
               <Col span={24} key={key}>
                 <div style={{ marginBottom: '4px' }}>
                   <span style={{ fontWeight: '500', textTransform: 'capitalize' }}>
