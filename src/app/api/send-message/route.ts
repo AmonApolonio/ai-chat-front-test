@@ -24,13 +24,7 @@ export async function POST(request: NextRequest) {
     const clienteId = process.env.CLIENTE_ID;
 
     if (!n8nUrl || !username || !password || !clienteName || !clienteId) {
-      console.error('Missing environment variables:', {
-        n8nUrl: !!n8nUrl,
-        username: !!username,
-        password: !!password,
-        clienteName: !!clienteName,
-        clienteId: !!clienteId
-      });
+      console.error('Missing environment variables');
       return NextResponse.json(
         { error: 'Erro de configuração do servidor' },
         { status: 500 }
@@ -51,8 +45,6 @@ export async function POST(request: NextRequest) {
     if (filesUrl && filesUrl.length > 0) {
       payload["files-url"] = filesUrl;
     }
-
-    console.log('Sending to N8N:', { url: n8nUrl, payload });
 
     const response = await fetch(n8nUrl, {
       method: 'POST',

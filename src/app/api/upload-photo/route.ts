@@ -68,7 +68,6 @@ export async function POST(request: NextRequest) {
     console.log('Body data:', bodyData);
 
     console.log('Uploading file:', fileName);
-    console.log('Upload URL:', uploadUrl);
     console.log('File size:', file.size);
     console.log('File type:', file.type);
 
