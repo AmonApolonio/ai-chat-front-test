@@ -250,8 +250,8 @@ export default function LookDetailModal({
       <Modal
         title={
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <InfoCircleOutlined style={{ color: '#947B62' }} />
-            Descrição do Look
+        <InfoCircleOutlined style={{ color: '#947B62' }} />
+        Descrição do Look
           </div>
         }
         open={descModalOpen}
@@ -262,16 +262,26 @@ export default function LookDetailModal({
       >
         {selectedLookData.descricaoLooks && (
           <Row gutter={[16, 8]}>
-            {Object.entries(selectedLookData.descricaoLooks).map(([key, value]) => (
-              <Col span={24} key={key}>
-                <div style={{ marginBottom: '4px' }}>
-                  <span style={{ fontWeight: '500', textTransform: 'capitalize' }}>
-                    {key.replace('item', 'Item ')}:
-                  </span> {value as string}
-                </div>
-              </Col>
-            ))}
+        {Object.entries(selectedLookData.descricaoLooks).map(([key, value]) => (
+          <Col span={24} key={key}>
+            <div style={{ marginBottom: '4px' }}>
+          <span style={{ fontWeight: '500', textTransform: 'capitalize' }}>
+            {key.replace('item', 'Item ')}:
+          </span> {value as string}
+            </div>
+          </Col>
+        ))}
           </Row>
+        )}
+        {selectedLookData.justificativa && (
+          <>
+        <div style={{ marginTop: 16, fontWeight: 600, color: '#947B62', fontSize: '15px' }}>
+          Justificativa
+        </div>
+        <p style={{ marginTop: 4, fontStyle: 'italic', color: '#947B62' }}>
+          {selectedLookData.justificativa}
+        </p>
+          </>
         )}
       </Modal>
 

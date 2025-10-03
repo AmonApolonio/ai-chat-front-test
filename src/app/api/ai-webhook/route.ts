@@ -24,6 +24,7 @@ interface WebhookRequest {
   answers?: string[];
   remaining?: number;
   descricaoLooks?: LookDescription;
+  justificativa?: string;
   items1?: ProductItem[];
   items2?: ProductItem[];
   items3?: ProductItem[];
@@ -36,6 +37,7 @@ interface AIResponse {
   answers?: string[];
   remaining?: number;
   descricaoLooks?: LookDescription;
+  justificativa?: string;
   items1?: ProductItem[];
   items2?: ProductItem[];
   items3?: ProductItem[];
@@ -92,6 +94,7 @@ export async function POST(request: NextRequest) {
     if (isLookResponse) {
       responseData.remaining = data.remaining;
       responseData.descricaoLooks = data.descricaoLooks;
+      responseData.justificativa = data.justificativa;
       responseData.items1 = data.items1;
       responseData.items2 = data.items2;
       responseData.items3 = data.items3;
@@ -119,6 +122,7 @@ export async function POST(request: NextRequest) {
     if (isLookResponse) {
       storedResponse.remaining = data.remaining;
       storedResponse.descricaoLooks = data.descricaoLooks;
+      storedResponse.justificativa = data.justificativa;
       storedResponse.items1 = data.items1;
       storedResponse.items2 = data.items2;
       storedResponse.items3 = data.items3;

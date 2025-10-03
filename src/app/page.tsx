@@ -52,6 +52,7 @@ export default function Home() {
       const newLook = {
         remaining: aiResponse.remaining,
         descricaoLooks: aiResponse.descricaoLooks,
+        justificativa: aiResponse.justificativa,
         items1: aiResponse.items1,
         items2: aiResponse.items2,
         items3: aiResponse.items3,

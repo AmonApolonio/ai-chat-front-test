@@ -29,6 +29,7 @@ export interface LookDescription {
 export interface LookData {
   remaining?: number;
   descricaoLooks?: LookDescription;
+  justificativa?: string;
   items1?: ProductItem[];
   items2?: ProductItem[];
   items3?: ProductItem[];
